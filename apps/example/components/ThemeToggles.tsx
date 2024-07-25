@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-import { useThemeTransition } from "@repo/react"
+import { useThemeTransition } from "@themetransition/react"
 
 const themeMapping: Record<string, string> = {
   light: "Default",
@@ -12,27 +12,6 @@ const themeMapping: Record<string, string> = {
   mint: "Mint",
   "dark-mint": "Mint (dark)"
 }
-
-function pipe<A, B>(callback: (a: A) => B) {
-  function run(a: A) {
-    return callback(a)
-  }
-
-  run.pipe = <C,>(callback3: (b: B) => C) => {
-    return pipe((a: A) => callback3(run(a)))
-  }
-
-  return run
-}
-
-const d = pipe((a: string) => Number(a))
-  .pipe(a => a + 10)
-  .pipe(a => a + 5 + "")
-  .pipe(a => ({
-    a
-  }))("5")
-
-console.log(d("5"))
 
 export default function ThemeToggles() {
   const { theme, handleThemeChange } = useThemeTransition()

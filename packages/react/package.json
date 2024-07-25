@@ -1,5 +1,5 @@
 {
-  "name": "@repo/react",
+  "name": "@themetransition/react",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -20,8 +20,8 @@
     "dev": "tsup --watch"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@themetransition/eslint-config": "workspace:*",
+    "@themetransition/typescript-config": "workspace:*",
     "@types/react": "^18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",

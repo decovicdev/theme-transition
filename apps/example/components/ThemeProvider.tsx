@@ -1,7 +1,7 @@
 "use client"
 
 import { ThemeProvider as NextThemesProvider } from "next-themes"
-import { ThemeTransitionProvider } from "@repo/react"
+import { ThemeTransitionProvider } from "@themetransition/react"
 
 type ThemeProviderProps = Parameters<typeof NextThemesProvider>[0]
 
