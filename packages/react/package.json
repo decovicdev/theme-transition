@@ -1,0 +1,37 @@
+{
+  "name": "@repo/react",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "framer-motion": "^11.3.6",
+    "html-to-image": "^1.11.11"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "prepublish": "pnpm build",
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17 || ^18",
+    "react-dom": "^16.8 || ^17 || ^18",
+    "next-themes": "^0.3"
+  }
+}
