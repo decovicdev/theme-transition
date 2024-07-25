@@ -1,5 +1,13 @@
 # @themetransition/example
 
+## 0.0.3
+
+### Patch Changes
+
+- a5f9797: fix release script
+- Updated dependencies [a5f9797]
+  - @themetransition/react@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
