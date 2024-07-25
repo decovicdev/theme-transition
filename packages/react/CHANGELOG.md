@@ -1,5 +1,11 @@
 # @themetransition/react
 
+## 0.0.2
+
+### Patch Changes
+
+- 7b29512: fix release script
+
 ## 0.0.1
 
 ### Patch Changes
