@@ -1,5 +1,11 @@
 # @themetransition/react
 
+## 0.0.4
+
+### Patch Changes
+
+- 5692251: update api and add fixs
+
 ## 0.0.3
 
 ### Patch Changes
