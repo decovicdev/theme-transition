@@ -6,9 +6,9 @@ A lightweight library for smooth theme transitions in your web applications.
 
 ### Features
 
-- #### Simple and lightweight
-- #### Smooth theme transitions
-- #### Easy to integrate with your framework
+- Simple and lightweight
+- Smooth theme transitions
+- Easy to integrate with your framework
 
 ### Current Support
 
@@ -16,12 +16,12 @@ A lightweight library for smooth theme transitions in your web applications.
 
 ### Planned Support
 
-- #### Svelte (coming soon)
-- #### Solid (coming soon)
+- Svelte (coming soon)
+- Solid (coming soon)
 
 ### Live Example
 
-Check out the [Live Example](https://next-themes-example.vercel.app/) to try it for yourself.
+Check out the [Live Example](https://theme-transition-example.vercel.app/) to try it for yourself.
 
 ### Contributing
 
