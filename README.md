@@ -1,81 +1,36 @@
-# Turborepo starter
+![react docs](./assets/screenshot.jpg)
 
-This is an official starter Turborepo.
+# Theme Transition
 
-## Using this example
+A lightweight library for smooth theme transitions in your web applications.
 
-Run the following command:
+### Features
 
-```sh
-npx create-turbo@latest
-```
+- #### Simple and lightweight
+- #### Smooth theme transitions
+- #### Easy to integrate with your framework
 
-## What's inside?
+### Current Support
 
-This Turborepo includes the following packages/apps:
+- #### React ([react guide](./packages/react/README.md))
 
-### Apps and Packages
+### Planned Support
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@themetransition/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@themetransition/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@themetransition/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- #### Svelte (coming soon)
+- #### Solid (coming soon)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Live Example
 
-### Utilities
+Check out the [Live Example](https://next-themes-example.vercel.app/) to try it for yourself.
 
-This Turborepo has some additional tools already setup for you:
+### Contributing
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+We welcome contributions!
 
-### Build
+### License
 
-To build all apps and packages, run the following command:
+This project is licensed under the MIT License.
 
-```
-cd my-turborepo
-pnpm build
-```
+### Acknowledgements
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- [William Candillon: Telegram Dark Mode - “Can it be done in React Native?”](https://www.youtube.com/watch?v=vKYEFpO06Tk&t=1260s)
