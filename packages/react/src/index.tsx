@@ -1,28 +1,24 @@
-import {
-  PropsWithChildren,
-  createContext,
-  useContext,
-  RefObject,
-  useState,
-  useMemo,
-  useId,
-  useRef
-} from "react"
+"use client"
+
 import { useMotionValue, useTransform, animate, motion, mix } from "framer-motion"
-import { UseThemeProps } from "next-themes/dist/types"
 import { createPortal, flushSync } from "react-dom"
 import { toJpeg } from "html-to-image"
-import { useTheme } from "next-themes"
+import React from "react"
 
 import useWindowSize from "./hooks/useWindowSize"
 import useIsMounted from "./hooks/useIsMounted"
 
-export type ThemeTransitionContextType = {
-  handleThemeChange: any
-  ref: RefObject<HTMLElement>
-} & Omit<UseThemeProps, "setTheme">
+type HandleThemeChange = (
+  key: string
+) => <T extends React.MouseEvent<any> | { x: number; y: number }>(e: T) => Promise<void>
 
-const ThemeTransitionContext = createContext<ThemeTransitionContextType | null>(null)
+export type ThemeTransitionContextType = {
+  themeRef: React.MutableRefObject<UseThemeTransition | undefined>
+  handleThemeChange: HandleThemeChange
+  ref: React.RefObject<HTMLElement>
+}
+
+const ThemeTransitionContext = React.createContext<ThemeTransitionContextType | null>(null)
 
 const style = {
   position: "absolute",
@@ -34,37 +30,52 @@ const style = {
   height: "100vh"
 } as const
 
-export function useThemeTransition() {
-  const themeTransition = useContext(ThemeTransitionContext)
+export type UseThemeTransition = {
+  setTheme: (key: string) => void
+  theme: string | undefined
+}
+
+export function useThemeTransition(options: UseThemeTransition) {
+  const themeTransition = React.useContext(ThemeTransitionContext)
 
   if (!themeTransition) {
     throw new Error("useThemeTransition must be used within a ThemeTransitionProvider")
   }
 
-  return themeTransition
+  if (!("setTheme" in options)) {
+    throw new Error("you must pass a setTheme function to useThemeTransition")
+  }
+
+  if (!themeTransition.themeRef.current) {
+    themeTransition.themeRef.current = options
+  }
+
+  return {
+    handleThemeChange: themeTransition.handleThemeChange,
+    ref: themeTransition.ref
+  }
 }
 
-type ThemeTransitionProps = PropsWithChildren<{
+type ThemeTransitionProps = React.PropsWithChildren<{
   duration?: number
 }>
 
 export function ThemeTransitionProvider(props: ThemeTransitionProps) {
   const { children, duration = 0.95 } = props
 
-  const { setTheme, themes, forcedTheme, resolvedTheme, systemTheme, theme } = useTheme()
+  const ref = React.useRef<HTMLElement>(null)
+  const themeRef = React.useRef<UseThemeTransition>()
 
-  const ref = useRef<HTMLElement>(null)
-
-  const svgId = useId()
+  const svgId = React.useId()
   const isMounted = useIsMounted()
   const windowSize = useWindowSize()
 
-  const [img, setImg] = useState<string | null>(null)
+  const [img, setImg] = React.useState<string | null>(null)
 
   const transition = useMotionValue(0)
   const circle = useMotionValue({ x: 0, y: 0, r: 0 })
 
-  const corners = useMemo(
+  const corners = React.useMemo(
     () =>
       [
         [0, 0],
@@ -77,12 +88,22 @@ export function ThemeTransitionProvider(props: ThemeTransitionProps) {
 
   const r = useTransform(() => mix(0, circle.get().r)(transition.get()))
 
-  function handleThemeChange(key: string) {
-    return async (e: MouseEvent) => {
+  const handleThemeChange: HandleThemeChange = (key: string) => {
+    const { setTheme, theme } = themeRef.current!
+
+    return async e => {
       if (theme === key || transition.isAnimating()) return
 
-      const x = e.clientX
-      const y = e.clientY
+      let x: number
+      let y: number
+
+      if ("x" in e && "y" in e) {
+        x = e.x
+        y = e.y
+      } else {
+        x = e.clientX
+        y = e.clientY
+      }
 
       const node = ref.current || document.body
 
@@ -103,6 +124,7 @@ export function ThemeTransitionProvider(props: ThemeTransitionProps) {
       flushSync(() => {
         setImg(jpeg)
         setTheme(key)
+        themeRef.current!.theme = key
       })
 
       animate(transition, 1, {
@@ -119,11 +141,7 @@ export function ThemeTransitionProvider(props: ThemeTransitionProps) {
       value={{
         ref,
         handleThemeChange,
-        resolvedTheme,
-        systemTheme,
-        forcedTheme,
-        themes,
-        theme
+        themeRef
       }}
     >
       {isMounted.current &&
