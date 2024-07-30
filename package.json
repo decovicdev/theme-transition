@@ -8,6 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
+    "test": "turbo test",
     "release": "turbo build --filter=@themetransition/example^... && changeset publish"
   },
   "devDependencies": {
