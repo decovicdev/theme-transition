@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 
 import { useThemeTransition } from "@themetransition/react"
+import { useTheme } from "next-themes"
 
 const themeMapping: Record<string, string> = {
   light: "Default",
@@ -14,7 +15,12 @@ const themeMapping: Record<string, string> = {
 }
 
 export default function ThemeToggles() {
-  const { theme, handleThemeChange } = useThemeTransition()
+  const { theme, setTheme } = useTheme()
+
+  const { handleThemeChange, ref } = useThemeTransition({
+    setTheme,
+    theme
+  })
 
   const [mounted, setMounted] = useState(false)
 
