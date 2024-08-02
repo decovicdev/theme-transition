@@ -1,6 +1,6 @@
 # @themetransition/react ![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40themetransition%2Freact) ![NPM Version](https://img.shields.io/npm/v/%40themetransition%2Freact)
 
-Check out the [Live Example](https://next-themes-example.vercel.app/) to try it for yourself.
+Check out the [Live Example](https://theme-transition-example.vercel.app/) to try it for yourself.
 
 ## Install
 
@@ -29,7 +29,7 @@ function MyApp({ children }) {
 export default MyApp
 ```
 
-### useTheme
+### useThemeTransition
 
 Your UI will need to know the current theme and be able to change it. The `useTheme` hook provides theme information:
 
